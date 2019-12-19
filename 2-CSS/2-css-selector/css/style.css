@@ -1,0 +1,16 @@
+/* selector with Tag name */
+title{
+    color: blueviolet;
+    display: block;
+}
+/* Selector with Class Name */
+.paragraph{
+    letter-spacing: 3px;
+    text-shadow: 5px 5px 5px black;
+}
+/* Selector by ID */
+#someID{
+box-shadow: 5px 5px 5px black;
+background-color: blueviolet;
+
+}

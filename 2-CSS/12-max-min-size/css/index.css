@@ -1,0 +1,19 @@
+.somediv{
+    width: 80%;
+    max-width: 600px;
+    min-width: 500px;
+    background-color: blue;
+    height: 50vh;
+    min-height: 500px;
+    max-height: 900px;
+}
+.somediv2{
+    background-color: blueviolet;
+    height:20vh ;
+    width: 1000px;
+}
+.subdiv{
+    height: 50vh;
+    background-color: gold;
+    width: 50%;
+}

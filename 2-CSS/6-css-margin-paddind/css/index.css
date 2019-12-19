@@ -1,0 +1,20 @@
+/* *,after,::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+} */
+.somespan1{
+    /* float: left; */
+     background-color: blue;
+    /* margin-right: 0px; it will make*/
+    margin-right: 2px;
+    padding-right: 10px;
+    
+}
+.somespan2{
+    /* float: left; */
+    
+    background-color: chartreuse;
+    /* margin-left: 0px; */
+    

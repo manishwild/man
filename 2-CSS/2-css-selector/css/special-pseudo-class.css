@@ -1,0 +1,12 @@
+input:disabled{
+   background-color: royalblue;
+}
+input:in-range{
+    border: 2px solid yellowgreen;
+}
+input:out-of-range{
+   border: 5px solid red;
+}
+input:invalid{
+   box-shadow: 5px 5px 5px red;
+}

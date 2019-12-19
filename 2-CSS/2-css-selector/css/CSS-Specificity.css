@@ -1,0 +1,20 @@
+#par{
+    color: red;
+}
+.bar{
+    color: lawngreen;
+}
+.someclass{
+    color: lightseagreen;
+}
+.somediv div p{
+    color: aqua;
+}
+.somediv>div>p{
+    color:purple;
+}    
+
+}
+.somediv p{
+    color:blueviolet !important;
+}

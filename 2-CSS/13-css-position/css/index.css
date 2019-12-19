@@ -1,0 +1,33 @@
+.somediv{
+    background-color: greenyellow;
+    height: 100px;
+    width: 100px;
+    /* left: 20px;
+    right: 20px; */
+    /* top: 50px; */
+    right: 20px;
+    bottom: 20px;
+    position: relative;
+    z-index:4;
+}
+.par{
+    position: relative;
+    bottom: 100px;
+    z-index: 3;
+    /* the layer which has hoigher z-index will be in the top */
+}
+.container{
+    position: relative;
+    background-color: hotpink;
+    left: 100px;
+}
+.fixeddiv{
+    background-color: indigo;
+    height: 50px;
+    width: 50px;
+    position: sticky;
+    top: 50vh;
+    left: 50vw;
+    /* left: 500px; */
+    transform: translate(-25px,-25px);
+}

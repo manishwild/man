@@ -1,0 +1,31 @@
+article h1{
+    color: chartreuse;
+    text-align: center;
+    text-decoration:underline ;
+    letter-spacing: 5px;/*space between leetter*/
+}
+article p{
+    border:1px solid darkgoldenrod;
+    width: 300px;
+    text-align: justify;
+    /* space at the begin in the paragraph */
+    text-indent: 50px;
+    line-height:30px;
+}
+.par{
+    text-transform: capitalize;
+    letter-spacing: 6px;
+}
+.par2{
+    word-spacing: 20px;
+    writing-mode: vertical-rl;
+}
+.par2::first-letter{
+    color: peru;
+    font-size: 35px;
+    line-height: 70px;
+    /* word-spacing: 20px;it can be negative */
+    
+}
+    
+    

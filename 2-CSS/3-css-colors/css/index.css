@@ -1,0 +1,13 @@
+.somediv{
+    /* color name */
+    
+    /* background-color:rgb(99, 89, 5); */
+    /* RGBA */
+    /* background-color: rgba(rgb(0, 0, 0,5), green, blue, alpha); */
+    /* HEx color */
+    background-color: #00ff00;
+
+    height: 100vh;
+    position: absolute;
+    width: 100vw;
+}

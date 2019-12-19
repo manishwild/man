@@ -1,0 +1,12 @@
+/* only an article praprgraph  */
+/* p+p+article{
+color: red;
+} */
+/*  */
+/* div:nth-child(8){
+    color: red;
+    }  */
+
+p~div{
+    color: red;
+}    

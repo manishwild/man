@@ -1,0 +1,37 @@
+*{
+    box-sizing: border-box;
+}
+.container{
+    background-color: aquamarine;
+    height: 500px;
+    width: 50%;
+}
+.child1{
+    background-color: lightcoral;
+    width: 100px;
+}
+.child2{
+    background-color: lightgray;
+    width: 50px;
+}
+.span1{
+    /* nline element can not have size (width and height) */
+    background-color: lightyellow;
+    width: 50%;
+    /* display: block; */
+    display: inline-block;
+    border: 1px solid black;
+    /* display: none; */
+    /* visibility: hidden; */
+    /* opacity: 0.; it is kind of */
+
+}
+.span2{
+    background-color: mediumpurple;
+    width:50% ;
+    display: inline-block;
+    /* margin-left: 1px; */
+    /* padding-left: 80px;
+    padding-bottom: 80px; */
+
+}

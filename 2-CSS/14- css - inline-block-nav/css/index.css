@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    margin: 10px;
+    text-align: center;
+    position: sticky;
+    top: 20px;
+}
+nav > ul > li{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    background-color: silver;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 0 10px 0 10px;
+}
+nav > ul > li>a{
+    text-decoration: none;
+    display: block;
+    color:white;
+    
+}
+nav > ul >li:hover{
+    background-color: saddlebrown;
+    box-shadow: 5px 5px 5px black;
+    font-size: 18px;
+    padding-top: 5px;
+}

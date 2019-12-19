@@ -1,0 +1,21 @@
+.somediv{
+    width: 60vw;
+    height: 60vh;
+    
+    /* background-color: darkred; */
+    /* background-image: url(../img/earth.jpg);
+    background-repeat: no-repeat;
+    
+    background-size: cover;
+    background-position: 10% 80%; */
+    
+    /* background: linear-gradient(to right top,rgba(202, 11, 11, 0.493),rgba(9, 209, 9, 0.267),rgb(118, 118, 209)), url(../img/earth.jpg); */
+    /* background: radial-gradient(ellips,rgba(105, 32, 32, 0.493),rgba(11, 221, 11, 0.267), url(../img/earth.jpg); */
+    
+    
+    /* clip-path: polygon(0% 0, 0 100%, 100% 70%, 100% 0%); */
+    /* background: linear-gradient(to right top,rgba(202, 11, 11, 0.493),rgba(9, 209, 9, 0.267),rgb(118, 118, 209)), url(../img/earth.jpg); */
+    background: linear-gradient(to right top,rgba(202, 11, 11, 0.493),rgba(9, 209, 9, 0.267),rgb(118, 118, 209)), url(../img/earth.jpg);
+    background-size: cover;
+    clip-path:ellipse(25% 40% at 50% 50%);
+}
