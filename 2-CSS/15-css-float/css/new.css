@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .body{
+      background-color: rgb(65, 57, 57);
+  }
+  .card{
+      /* height: 20vh; */
+      margin: 20px;
+      position: relative;
+      max-height: 416px;
+      box-shadow: 1px 7px 20px gray;
+      border-radius: 10px;
+  }
+  .container{
+      width:80%;
+      margin:auto;
+  }
+  .img1{
+      height: 150px;
+      background-image:linear-gradient(rgba(155,155, 38,0.534),rgba(155,155, 38,0.534)),url(../img/nat-5.jpg);
+      background-size: cover;
+      clip-path: polygon(0 0,100% 0,100% 80%,0 100%);
+      border-radius: 10px 10px 0 0;
+  }
+  .img2{
+    height: 150px;
+    background-image:linear-gradient(rgba(207, 207, 4, 0.493),rgba(102, 255, 0, 0.514)),url(../img/nat-6.jpg);
+    background-size: cover;
+    clip-path: polygon(0 0,100% 0,100% 80%,0 100%);
+    border-radius: 10px 10px 0 0;
+}
+.img3{
+    height: 150px;
+    background-image:linear-gradient(rgba(91, 106, 172, 0.123),rgba(69, 63, 151, 0.404)),url(../img/nat-7.jpg);
+    background-size: cover;
+    clip-path: polygon(0 0,100% 0,100% 80%,0 100%);
+    border-radius: 10px 10px 0 0;
+}
+.title1{
+    position: absolute;
+    top: 85px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(226, 193, 136)0%,rgb(243, 166, 19)100%);
+    padding: 5px;
+    color: white;
+}
+.title2{
+    position: absolute;
+    top: 115px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(226, 193, 136)0%,rgb(243, 166, 19)100%);
+    padding: 5px;
+    color:white;
+}
+.title3{
+    position: absolute;
+    top: 85px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(161, 226, 136)0%,rgb(38, 243, 19)100%);
+    padding: 5px;
+    color: white;
+}
+.title4{
+    position: absolute;
+    top: 115px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(161, 226, 136)0%,rgb(127, 243, 19)100%);
+    padding: 5px;
+    color:white;
+}
+.title5{
+    position: absolute;
+    top: 85px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(138, 136, 226)0%,rgb(19, 23, 243)100%);
+    padding: 5px;
+    color: white;
+}
+.title6{
+    position: absolute;
+    top: 115px;
+    right: 3px;
+    text-transform: uppercase;
+    background:linear-gradient(to top,rgb(136, 157, 226)0%,rgb(19, 97, 243)100%);
+    padding: 5px;
+    color:white;
+}
+.list{
+    list-style-type: none;
+    margin-top: 20px;
+    text-align: center;
+    color: gray;
+    font-size: smaller;
+    padding: 20px;
+    
+}
+.list>li{
+    margin-bottom:15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201, 197, 144, 0.651);
+}
+.list>li:last-child{
+    border-bottom: none;
+}
+/* @media only screen and (max-width:768px){
+    .container{
+        width:100%;
+}     
+}
+@media only screen and (max-width:480px){
+    .container{
+        width:100%;
+}     
+} */
+/* because container file is in libery thats why we dont write in css */

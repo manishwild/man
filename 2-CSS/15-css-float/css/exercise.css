@@ -1,0 +1,170 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+  .some1{
+    height: 5vh;
+    width: 100%;
+    background-color:rgb(179, 177, 167);
+ 
+   }
+  .some2{
+   height: 15vh;
+   width: 100%;
+   background-color: blue;
+
+  }
+  .some3{
+      float: left;
+      height:20vh;
+      width: 25%;
+      background-color: brown;
+
+  }
+  .some4{
+      float: left;
+      height: 20vh;
+      width: 75%;
+      background-color: cadetblue;
+
+  }
+  .some5{
+    float: left;
+    height: 20vh;
+    width: 75%;
+    background-color: gold;
+  }
+  .some6{
+    float: right;
+    height: 40vh;
+    width: 25%;
+    background-color: black;
+  }
+  
+  .some7{
+    float: left;
+    height: 40vh;
+    width: 25%;
+    background-color: pink;
+  }
+  .some8{
+    float: left;
+    height: 20vh;
+    width: 50%;
+    background-color: rebeccapurple;
+  }
+  .some9{
+    float: left;
+    height: 20vh;
+    width: 75%;
+    background-color: yellowgreen;
+  }
+  @media only screen and (max-width:797px){
+    
+    .some3,.some4 ,.some5,.some6,.some7{
+          width: 50%;
+      }
+      .some5{
+          height:10vh;
+      }
+      .some7{
+          height: 30vh;
+      }
+      .some8,.some9{
+          width: 100%;
+      }
+  }
+  @media only screen and (max-width:340px){
+      /* [class^="some"] selector for all classese that begin with word (some) */
+    /* [class*="some"]selector for all classese that contain with word (some) */
+    [class^="some"]{
+          width: 100%;
+      }
+    
+    /* .some1{
+        height: 5vh;
+        width: 100%;
+        background-color:rgb(179, 177, 167);
+     
+       }
+      .some2{
+       height: 15vh;
+       width: 100%;
+       background-color: blue;
+    
+      }
+      .some3{
+          float: left;
+          height:10vh;
+          width: 100%;
+          background-color: brown;
+    
+      }
+      .some4{
+          float: left;
+          height: 10vh;
+          width: 100%;
+          background-color: cadetblue;
+    
+      }
+      .some5{
+        float: left;
+        height: 10vh;
+        width: 100%;
+        background-color: gold;
+      }
+      .some6{
+        float: right;
+        height: 20vh;
+        width: 100%;
+        background-color: black;
+      }
+      
+      .some7{
+        float: left;
+        height: 10vh;
+        width: 100%;
+        background-color: pink;
+      }
+      .some8{
+        float: left;
+        height: 10vh;
+        width: 100%;
+        background-color: rebeccapurple;
+      }
+      .some9{
+        float: left;
+        height: 10vh;
+        width: 100%;
+        background-color: yellowgreen;
+      } */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

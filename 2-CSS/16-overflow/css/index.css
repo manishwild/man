@@ -1,0 +1,10 @@
+.container{
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    overflow: scroll;
+    
+}
+/* .container::-webkit-scrollbar{
+    display: none;
+} it will hide scroll*/

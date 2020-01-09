@@ -10,7 +10,8 @@ nav>ul>li {
     background-color: darkblue;
     color: darkgray;
     width: 100px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 50px 0 50px 0;
 
   }
@@ -22,7 +23,7 @@ nav>ul>li {
     list-style-type: none;
     margin: auto;
     
-    overflow: hidden;
+    /* overflow: hidden; */
    
     height: 50px;
     padding-left: 20px;
@@ -30,12 +31,12 @@ nav>ul>li {
     text-align: center;
     padding-top: 5px;
   }
-  nav>ul>li:hover{
+  nav>ul>li>label:hover{
     font-weight: bolder;
-    background-color: darkkhaki;
-    color: darkred;
-    font-size: 25px;
-    box-shadow: 5px 5px 5px blueviolet;
+    /* background-color: darkkhaki;
+    color: darkred; */
+    font-size: 20px;
+    /* box-shadow: 5px 5px 5px blueviolet; */
   }
   .banner{
     margin-top: 10px;
@@ -54,4 +55,61 @@ section,input{
 }
 input:checked+section{
   display: block;
+}
+.dropdown{
+  position: relative;
+  z-index: 5;
+  display: none;
+}
+.dropdown>ul{
+  /* background-color: cornflowerblue; */
+  list-style-type: none;
+}
+.dropdown>ul>li{
+  margin-bottom: 5px;
+  width: 100px;
+  text-align: center;
+}
+.dropdown>ul>li>a{
+  text-decoration: none;
+  color: silver;
+  background-color: maroon;
+  display: block;
+  border-radius: 50px 0 50px 0;
+}
+.dropdown>ul>li>a:hover{
+  font-size:27px ;
+  
+}
+nav>ul>li:hover>.dropdown{
+  display: block;
+}
+
+@media only screen and (max-width:390px){
+  nav>ul{
+    width: 100%;
+    height:150px;
+    padding-left;0:
+     
+  }
+  nav>ul>li{
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  body{
+    background-color: hotpink;
+  }
+  
+  
+
+}
+@media only screen and (min-width:390px){
+  body{
+    background-color: blue;
+  }
+
+}
+@media only screen and (min-width:1200px){
+  body{
+  background-color:greenyellow;
 }

@@ -1,0 +1,22 @@
+.div1{
+    float: left;
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}
+.div2{
+    float: left;
+    clear:  ;
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+.div3{
+    float: left;
+    background-color:green;
+    height: 100px;
+    width: 100px;
+}
+div{
+    
+}
