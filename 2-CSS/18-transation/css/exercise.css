@@ -1,0 +1,35 @@
+.somediv{
+    height: 400px;
+    width: 400px;
+    background-color: rebeccapurple;
+    position: relative;
+    
+}
+.somediv span{
+position: absolute;
+transition-duration: 2s;
+transition-property:left,top,transform;
+
+left: 0;
+top: 0;
+}
+.somediv:hover span {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    
+    
+    }
+    /* somediv{
+    height: 200px;
+    width: 200px;
+    background-color: rebeccapurple;
+}
+.somediv span{
+display: inline-block;
+transition-duration: 2s;
+transition-property: transform;
+}
+.somediv:hover span {
+    transform: translate(74px,83px);
+ this way i do and work*/

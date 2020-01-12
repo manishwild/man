@@ -1,0 +1,16 @@
+.somediv{
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
+
+
+    transition-property: width,height,background-color;
+    transition-duration: 2s;
+}
+span:hover {
+    display: inline-block;
+    transform: translate(74px,83px);
+    transition-duration: 2s;
+
+
+}
