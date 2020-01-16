@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  border: 2px solid black;
+  -webkit-transform: skew(40deg);
+          transform: skew(40deg);
+}
+
+.container > div {
+  background-color: #5353b6;
+}
+
+.container > div:nth-child(1) {
+  font-size: 25px;
+}
+
+.container > div:nth-child(1) > p {
+  line-height: 50px;
+}
+
+.banner {
+  background-color: #5353b6;
+}
+/*# sourceMappingURL=index.css.map */

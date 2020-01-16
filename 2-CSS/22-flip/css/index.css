@@ -147,25 +147,34 @@ body{
 @media only screen and (min-width:768px){
     [class*=".container"]{
         width: 100%;
-        display: flex;
-        width:50%;
-        display: block;
+        
+        
+        
         
 
     }
 }
-@media only screen and (min-width:480px){
-    [class*=".container"]{
+@media only screen and (min-width:380px){
+    [class*=".container,.bac,.bac"]{
+        width: 100%;
+        display: flex;
+        
+        
+
+    }
+}
+@media only screen and (max-width:380px){
+    .back,.back2,.back1{
+        width: 100%;
+        backface-visibility:visible;
+        
+        
+    }
+}
+@media only screen and (max-width:380px){
+    .card{
         width: 100%;
         
-        width:100%;
-        display: flex;
-
-    }
-}
-@media only screen and (min-width:780px){
-    .flip:hover{
-        display: block;
-        backface-visibility: visible;
+        
     }
 }
