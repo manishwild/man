@@ -30,7 +30,7 @@
     display: inline-block;
     width:30px ;
     position: absolute;
-    transition: transform 0.8s;
+    transition: transform 1s;
   
     
     
@@ -42,32 +42,53 @@
 .some1>span:nth-child(1){
     left: 20px;
     top: 23.5px;
+    transition: transform 0.5s;
+    transition-timing-function: cubic-bezier(1,1.54,.76,-1);
+    
+    
 }
 .some1>span:nth-child(3){
     left: 20px;
     top: 43.5px;
+    transition: transform 0.5s;
+    transition-timing-function: cubic-bezier(1,1.54,.76,-1);
+    
+    
+
 }
-.some1:hover span{
-    transform: rotatez(240deg);
+/* .some1:hover span{
+    transform: rotate(240deg);
+    left: 20px;
+    top: 33.5px; 
+    
+    
+    
+   
+}*/
+/* .some1:hover span:nth-child(2){
+    transform: rotate(120deg);
     left: 20px;
     top: 33.5px;
     
     
     
-   
-}
-.some1:hover span:nth-child(2){
-    transform: rotatez(120deg);
-    left: 20px;
-    top: 33.5px;
-    
-    
-    
-   
+   this is my waty
 }
 
 
 #somecheckbox{
     display: none;
 
+} */
+
+.some>input:checked + label>.some1>span:nth-child(1){
+    transform: rotate(45deg);
+    top: 50%;
+}
+.some>input:checked + label>.some1>span:nth-child(2){
+    display: none;
+   }
+.some>input:checked + label>.some1>span:nth-child(3){
+    transform: rotate(-45deg);
+    top:50%;
 }

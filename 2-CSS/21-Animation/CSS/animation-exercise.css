@@ -1,0 +1,150 @@
+.smoke{
+    position: absolute;
+    bottom: 45px;
+    left: 45%;
+    
+
+
+
+}
+.smoke span{
+    display: block;
+    height: 0;
+    width: 0;
+    bottom: -30px;
+    left: -20px;
+    border: 40px solid rgb(27, 14, 14);
+    border-radius: 40px;
+    position: absolute;
+    opacity: 0;
+}
+@keyframes smokeleft{
+0%{
+    transform: scale(0.2) translate(0,0);
+}
+10%{
+    opacity: 1;
+    transform: scale(0.2) translate(0,-5px);
+}
+100%{
+    opacity:0;
+    transform: scale(1) translate(-20px,-140px);
+}
+}
+@keyframes smokeright{
+    0%{
+        transform: scale(0.2) translate(0,0);
+    }
+    10%{
+        opacity: 1;
+        transform: scale(0.2) translate(0,-5px);
+    }
+    100%{
+        opacity:0;
+        transform: scale(1) translate(-20px,-140px);
+    }
+    }
+    .s1{
+        animation-name:smokeleft;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 0s;
+    }
+    .s2{
+        animation-name:smokeright;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 1s;
+    }
+    .s3{
+        animation-name:smokeleft;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 2s;
+    }
+    .s4{
+        animation-name:smokeright;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 3s;
+    }
+    .s5{
+        animation-name:smokeleft;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 4s;
+    }
+    .s6{
+        animation-name:smokeright;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 5s;
+    }
+    .s7{
+        animation-name:smokeleft;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 6s;
+    }
+    .s8{
+        animation-name:smokeright;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 7s;
+    }
+    .s9{
+        animation-name:smokeleft;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 8s;
+    }
+    .s10{
+        animation-name:smokeright;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-delay: 9s;
+    }
+    .smoke1{
+        width: 30px;
+        background-color: rgb(223, 141, 19);
+        height: 20px;
+        
+        position: absolute;
+    bottom:0px;
+    left: 100px;
+    box-shadow:5px 5px 5px rgb(155, 145, 145) ;
+    }
+    .smoke2{
+        width: 80px;
+        background-color:rgb(236, 227, 227);
+        height: 20px;
+        position: absolute;
+        
+    bottom:0px;
+    left: 20px;
+    box-shadow: 1px 1px 5px rgb(155, 145, 171) ;
+    
+    }
+    .smoke3{
+        width: 10px;
+        background-color:rgba(236, 30, 30, 0.959);
+        height: 20px;
+        position: absolute;
+        
+        animation-name: red1;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+    bottom:0px;
+    left: 20px;
+    box-shadow: 5px 5px 5px rgb(177, 174, 171) ;
+    }
+    @keyframes red1{
+        from{
+            
+            background-color: red;
+        }
+        to{
+            
+            background-color:#740202;
+        }
+    }

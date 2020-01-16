@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header,.footer{
+    height: 20vh;
+    background-color: yellowgreen;
+}
+.container{
+    display: flex;
+}
+.article{
+    flex-grow: 3;
+    height: 60vh;
+    
+    
+}
+.aside{
+    flex-grow: 1;
+    height: 60vh;
+    background-color:blue;
+    
+}
+.nav{
+    flex-grow: 1;
+    height: 60vh;
+    background-color:red;
+}
