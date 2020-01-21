@@ -1,0 +1,13 @@
+@mixin layoutcolors($blacolor,$blasize) {
+    color: $blacolor;
+    font-size: $blasize;
+    border: 5px solid green;
+    
+}
+.blaclass{
+    box-shadow: 5px 5px 5px lightgray;
+    @include layoutcolors(lightgrey,30px )
+}
+.blablaclass{
+    @include layoutcolors(red,50px )
+}

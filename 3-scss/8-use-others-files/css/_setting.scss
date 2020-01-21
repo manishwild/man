@@ -1,0 +1,9 @@
+@mixin groupclass{
+    border: 5px black;
+    color: green;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

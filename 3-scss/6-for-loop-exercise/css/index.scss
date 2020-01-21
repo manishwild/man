@@ -1,0 +1,15 @@
+.container{
+    @for $var from 0 to 20 {
+        & > div:nth-child(#{$var+1}){
+            height: 50px;
+            @if $var+1 ==9 {
+                background-color: red;
+                
+            }
+            @else {background-color:rgb(255, 255, 255)-(rgb(255, 255, 255) / 20) * $var ;}
+            
+        
+    }
+    }
+
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAMA,AAAA,SAAS,CAAA;EACL,UAAU,EAAE,qBAAqB;EANjC,KAAK,EAOiB,SAAS;EAN/B,SAAS,EAMuB,IAAI;EALpC,MAAM,EAAE,eAAe;CAM1B;;AACD,AAAA,YAAY,CAAA;EATR,KAAK,EAUiB,GAAG;EATzB,SAAS,EASiB,IAAI;EAR9B,MAAM,EAAE,eAAe;CAS1B",
+    "sources": [
+        "mixin-peameters.scss"
+    ],
+    "names": [],
+    "file": "mixin-peameters.css"
+}

@@ -113,6 +113,7 @@
     bottom:0px;
     left: 100px;
     box-shadow:5px 5px 5px rgb(155, 145, 145) ;
+    border-radius: 0px 5px 5px 0px;
     }
     .smoke2{
         width: 80px;
@@ -123,6 +124,7 @@
     bottom:0px;
     left: 20px;
     box-shadow: 1px 1px 5px rgb(155, 145, 171) ;
+    border-radius: 10px 0px 0px 10px;
     
     }
     .smoke3{
@@ -137,6 +139,7 @@
     bottom:0px;
     left: 20px;
     box-shadow: 5px 5px 5px rgb(177, 174, 171) ;
+    border-radius: 50px;
     }
     @keyframes red1{
         from{

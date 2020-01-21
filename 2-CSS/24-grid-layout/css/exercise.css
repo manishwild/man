@@ -9,11 +9,13 @@
                         "item5 item5 item6 item6 item3 item3 item7 item7 item8"
                         "item5 item5 item9 item9 item10 item10 item10 item10 item8";
     grid-gap: 15px;
+    
 
 }
 .container div{
     background-color:blue;
     text-align: center;
+    
 }
 
 .item1{
