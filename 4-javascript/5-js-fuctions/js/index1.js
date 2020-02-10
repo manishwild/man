@@ -13,4 +13,4 @@ function checkNumber(num) {
         console.log("It is Odd Number")
     }
 }
-//checkNumber(5)
+checkNumber(5)

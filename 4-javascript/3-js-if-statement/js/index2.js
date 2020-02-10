@@ -1,4 +1,4 @@
-let grade = 105
+let grade = 99
 // if(grade >= 50)
 // {
 //     console.log("you pass")

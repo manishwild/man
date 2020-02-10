@@ -15,8 +15,9 @@ console.log("/////////////")
 function indexesFinder(txt,chr,start) {
    if(start < txt.length){
       let idx = txt.indexOf(chr,start)
-      if(idx != -1){console.log(idx)
-      indexesFinder(txt,chr,idx+1)
+      if(idx != -1)
+        {console.log(idx)
+        indexesFinder(txt,chr,idx+1)
       }
     }
 }

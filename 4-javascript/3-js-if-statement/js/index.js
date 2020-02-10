@@ -1,4 +1,4 @@
-let x = 5
+let x = 12
 let y = 10
 let z = x > y
 //if (z == false) is(!Z) are same

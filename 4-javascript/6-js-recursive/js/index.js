@@ -7,4 +7,4 @@ function hopla(num) {
         return num
     }
 }
-hopla(5)
+hopla(3)
