@@ -6,7 +6,60 @@ let matrix = [
     [-5,4-66,89,56,5,6,34,4,55,56],
     [32,66,78,7,5,6,22,4,55,78],
     [99,-44,67,7,12,6,34,45,55,55],
-    [12,6,56,7,23,6,22,4,55,554]
+    [12,6,56,7,23,6,22,4,55,564]
 ]
-let matrix = arr.forEach(item => {item.push() })
-document.write(arr +  '<br>')
+let newArr = []
+matrix.forEach(num => {
+    newArr.push(num    )
+})
+document.write(matrix + '<br>')
+document.write('//////////////////' + '<br>')
+document.write(newArr + '<br>')
+document.write('//////////////////' + '<br>')
+for (let i = 0; i < matrix.length; i++) {
+    for (let x = 0; x < matrix[i].length; x++) {
+        document.write(matrix[i][x] + '<br>')
+    
+        
+    }
+    
+}
+document.write('//////////////////' + '<br>')
+function printNewLine(arr){
+    arr.forEach(item => {
+        item.forEach(subItem => {
+            document.write(subItem + '<br>')
+            
+        });
+        
+    });
+}
+printNewLine(matrix)
+document.write('//////////////////' + '<br>')
+for (let i = 0; i < matrix.length; i++) {
+    let sum = 0
+    for (let x = 0; x < matrix[i].length; x++) {
+        sum += matrix[i][x]
+        
+        
+    }
+    document.write(sum + '<br>')
+    
+    
+}
+document.write('///////////////////////////////////' + '<br>')
+
+function printsum(arr){
+    let mainstor = 0
+    arr.forEach(item => { 
+        let stor = 0
+        item.forEach(subItem =>{
+            stor += subItem
+        })
+        mainstor += stor
+        document.write(stor + '<br>')
+
+    })
+    document.write(mainstor +'<br>')
+}
+printsum(matrix)
