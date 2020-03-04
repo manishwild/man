@@ -5,13 +5,24 @@ xhr.send();
 xhr.onload = function () {
    
 if (xhr.status == 200) {
-    let Data = JSON.parse(xhr.response)
-    
-        document.write('<img src= "'+Data.arrayOfProducts.imgUrl[1]+'" >'+"<br>")
-        //document.write('ID: '+Data.name+'<br>')
-        //document.write('Joke: '+Data.price + '<br>')
-}else{
-    
-    console.log('Error Number : '+ xhr.status)
+    //console.log(xhr.response)
+    let Products = JSON.parse(xhr.response).arrayOfProducts
+    for (let i = 0; i < Products.length; i++) {
+        let productHtml = (i + 1)+ '   <img src= "'+Products[i].imgUrl+'"width="50" >';
+        productHtml += '    ' +Products[i].name;
+        productHtml += '<sub><del>  ' +(Products[i].price*2) + 'Euro</del></sub>';
+        productHtml += '<b>  ' +Products[i].price + 'Euro</b><br>';
+        document.write(productHtml)
+        
+    }
+    document.close()
+
+    // Products.forEach(Product => {
+    //     let productHtml = '<img src= "'+Product.imgUrl+'"width="50" >';
+    //     productHtml += '    ' +Product.name;
+    //     productHtml += '<sub><del>  ' +(Product.price*2) + 'Euro</del></sub>';
+    //     productHtml += '<b>  ' +Product.price + 'Euro</b><br>';
+    //     document.write(productHtml)
+    // });
 }
 }
