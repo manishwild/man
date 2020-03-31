@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+.controlsContainer{
+    display: flex;
+    flex-direction: column;
+}
+.images-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.images-container img{
+    /* float: left; */
+    width: 60px;
+    margin: 5px;
+}
+.images-container a{
+    display: block;
+    max-height: 30px;
+    margin: 10px;
+}
