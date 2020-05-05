@@ -16,18 +16,39 @@ window.onload = function () {
     // context.fillRect(500,79,20,20)
  context.stroke()
    let boxMove = 580
+   let boxmoveCheck = true
+   let boxmoveTime = 100
+   function boxmove() {
+    
+        context.clearRect(boxMove+20,79,20,20)
+        context.fillRect(boxMove,79,20,20)
+        
+        if (boxMove==0) {
+            boxMove =580
+        }else{
+            boxMove = boxMove -20
+        }
+        if (boxmoveCheck) {
+            setTimeout(() => {
+            boxmove()
+        },boxmoveTime);
+        }
+        
+       
+   } 
+   boxmove()
    
-         let boxInterval=setInterval(() => {
-            context.clearRect(boxMove+20,79,20,20)
-            context.fillRect(boxMove,79,20,20)
+        //  let boxInterval=setInterval(() => {
+        //     context.clearRect(boxMove+20,79,20,20)
+        //     context.fillRect(boxMove,79,20,20)
             
-            if (boxMove==0) {
-                boxMove =580
-            }else{
-                boxMove = boxMove -20
-            }
+        //     if (boxMove==0) {
+        //         boxMove =580
+        //     }else{
+        //         boxMove = boxMove -20
+        //     }
 
-         }, 100);
+        //  }, 100);
     
     img.onload =function (e) {
     //to show full image
@@ -62,7 +83,8 @@ window.onload = function () {
         }
         if (boxMove <= 39 && status == 'running') {
             // console.log('crash')
-            clearInterval(boxInterval)
+            //clearInterval(boxInterval) 
+            boxmoveCheck = false
             clearInterval(charachterInerval)
             context.fillStyle = "red"
             context.font = "60px ariel"
@@ -75,6 +97,9 @@ window.onload = function () {
             scoreCounter++
             
             score.innerText = scoreCounter 
+            if (boxmoveTime > 50) {
+                boxmoveTime -=10
+            }
             
         }
     }, 150);
@@ -100,4 +125,4 @@ window.onload = function () {
 }
 
 //increase the box speed every sucess
-//student grade sysytem
+//student grade system

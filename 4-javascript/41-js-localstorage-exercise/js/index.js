@@ -52,6 +52,7 @@ window.onload = function () {
             let containerDiv = document.createElement('div')
             body.append(containerDiv)
             dataobj.forEach(element => {
+            studentArray.push(element)    
                 console.log(element);
                 let nameh3 = document.createElement('h3')
                 nameh3.innerText = element.name

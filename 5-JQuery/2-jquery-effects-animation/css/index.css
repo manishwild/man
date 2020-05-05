@@ -1,0 +1,11 @@
+#someDiv{
+    position: absolute;
+    width: 200px;
+    padding: 5px;
+    background-color: coral;
+    border: 2px solid black;
+    height: 100px;
+}
+#btn{
+    margin-top: 150px;
+}
