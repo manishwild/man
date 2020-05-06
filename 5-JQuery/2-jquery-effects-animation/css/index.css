@@ -1,3 +1,7 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 #someDiv{
     position: absolute;
     width: 200px;
@@ -8,4 +12,19 @@
 }
 #btn{
     margin-top: 150px;
+}
+.container{
+    background-color: chartreuse;
+    height: 200px;
+    width: 400px;
+}
+.container >div:nth-child(1){
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: cornflowerblue;
+}
+.chainDiv{
+    background-color: goldenrod;
+   
 }
