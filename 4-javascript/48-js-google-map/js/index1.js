@@ -35,3 +35,15 @@ var map;
           } )
       }
       //set interval google map slowly zoom towads dci
+
+// var LatLngList = new Array (new google.maps.LatLng (52.537,-2.061), new google.maps.LatLng (52.564,-2.017));
+// //  Create a new viewpoint bound
+// var bounds = new google.maps.LatLngBounds ();
+// //  Go through each...
+// for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+//   //  And increase the bounds to take this point
+//   bounds.extend (LatLngList[i]);
+// }
+// //  Fit these bounds to the map
+// map.fitBounds (bounds);
+// @cbdelavenne
