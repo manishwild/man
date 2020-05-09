@@ -1,12 +1,25 @@
 
 var map;
+// latitude & longitude for DCI Hamburg
+var LatLng = {lat: 53.550270, lng: 10.025270};
+
+// map-zooming with setInterval
+let zoomCounter = 2;
+let mapInterval = setInterval(function() {
+    if (zoomCounter == 15) {
+        clearInterval(mapInterval);
+    } else {
+        zoomCounter += 1;
+        initMap();
+    }
+}, 2000);
 //var
       function initMap() {
           //set the map
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 53.550270, lng: 10.025270},
-          zoom: 1,
-          //disableDefaultUI:true
+          map = new google.maps.Map(document.getElementById('map'), {
+          center: LatLng ,
+          zoom: zoomCounter,
+          disableDefaultUI:true
 
         });
         //set the marker image
@@ -36,7 +49,7 @@ var map;
       }
       //set interval google map slowly zoom towads dci
 
-// var LatLngList = new Array (new google.maps.LatLng (52.537,-2.061), new google.maps.LatLng (52.564,-2.017));
+// var LatLngList = new Array (new google.maps.LatLng (53.550270,10.025270), new google.maps.LatLng (53.550270,10.025270));
 // //  Create a new viewpoint bound
 // var bounds = new google.maps.LatLngBounds ();
 // //  Go through each...
@@ -44,6 +57,4 @@ var map;
 //   //  And increase the bounds to take this point
 //   bounds.extend (LatLngList[i]);
 // }
-// //  Fit these bounds to the map
-// map.fitBounds (bounds);
-// @cbdelavenne
+
