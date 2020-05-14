@@ -1,0 +1,22 @@
+.text-light{
+    color: rgb(46, 221, 23) !important;
+}
+.md-accordion .card .card-header a:not(.collapsed) .rotate-icon {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/* navigation bar css */
+.nav-bg{
+    background-color: rgb(238, 223, 10);
+    
+}
+.custom-class>a.navbar-brand , .custom-class>div.collapse>ul.navbar-nav>li.nav-item>a.nav-link{
+    color: rgb(60, 62, 73) ;
+}
+.custom-class>div.collapse>ul.navbar-nav>li.active>a.nav-link{
+    color: rgb(52, 200, 59);
+}
+.carousel-caption{
+    top: 50%;
+}
