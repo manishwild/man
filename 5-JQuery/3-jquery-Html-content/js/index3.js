@@ -12,6 +12,7 @@ $(document).ready(function () {
     // $(this).text('-')
     //************************************************************ */
     //$(this).text()=='-'? $(this).text('+'):$(this).text('-')
+    // currentText=="-" ? $(this).text("+").parent().next().slideUp() : $(this).text("-").parent().next().slideDown()
     //$(this).text()=='-'? $(this).parent().next().slideDown():$(this).parent().next().slideUp() we use this code up to make it short
 
     let currentText = $(this).text()
