@@ -1,0 +1,11 @@
+{
+  "name": "1-nodejs-start",
+  "version": "1.0.0",
+  "description": "this is my firt node app",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Manish shahi",
+  "license": "ISC"
+}
