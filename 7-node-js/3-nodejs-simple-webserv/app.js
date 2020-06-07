@@ -1,6 +1,10 @@
 const http = require('http')
 const fs = require('fs')
 const url = require('url')
+
+// import nodemailer
+const nodemailer = require('nodemailer')
+
 //import our module
 const saver = require('./modules/saver')
 http
@@ -34,6 +38,28 @@ http
                     let massage = urlObj.query.fname + '\n' + urlObj.query.lname + '\n' +urlObj.query.email + '\n' +urlObj.query.message + '\n'
                     console.log(urlObj.query);
                     saver.saveContent(massage,'content.txt')
+                    //send email
+                    const transporter = nodemailer.createTransport({
+                        service:'gmail',
+                        auth:{
+                            user:'manishwild1000@gmail.com',
+                            pass:'mypassword'
+                        }
+                    })
+                    const mailOption = {
+                        from:'youremail@gmail.com',
+                        to:'manishwild1000@yahoo.com',
+                        subject:urlObj.query.email,
+                        text:urlObj.query.fname +'\n' + urlObj.query.message
+                    }
+                    transporter.sendMail(mailOption,function (error,info) {
+                        if (error) {
+                            console.log(error);
+                            
+                        } else {
+                            console.log('Email sent: ' + info.response)
+                        }
+                    })
                 }
                 //saver.saveContent('hello i am some content','content.txt')
                 res.writeHead(200, {'content-type': 'text/html'})
@@ -48,3 +74,5 @@ http
         }
     })
     .listen(4500)
+
+    //to add another email we have to use smtp nodemailer
