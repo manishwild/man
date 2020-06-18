@@ -15,7 +15,7 @@
 
     <!-- bradcam_area_start -->
     <div class="bradcam_area breadcam_bg overlay">
-        <h3>Menu</h3>
+        <h3><%=mealTitle%></h3>
     </div>
     <!-- bradcam_area_end -->
 
@@ -25,30 +25,22 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title text-center mb-80">
-                        <span>Burger Menu</span>
-                        <h3>Best Ever Burgers</h3>
+                        <span><%=mealTitle%></span>
+                        <h3>$<%=mealPrice%></h3>
                     </div>
                 </div>
             </div>
             <div class="row">
-                 <%for(let i =0; i < meals.length; i++){%>
-                <div class="col-xl-6 col-md-6 col-lg-6">
-                    <div class="single_delicious d-flex align-items-center">
-                        <div class="thumb">
-                           
-                            <img src='<%=meals[i].imgUrl%>'alt="">
-                        </div>
-                        <div class="info">
-                            
-                            <h3><a href="/meal/<%=meals[i].title.trim().replace(/ /g,'_')%>"><%=meals[i].title%></a></h3>
-                            <p><%=meals[i].description%></p>
-                            <span>$<%=meals[i].price%></span>
-                            
-                    </div>
+                <div class="col-md-3">
+                    <img width="250" src="<%=mealImg%>" alt="" >
                 </div>
-                
-                        </div>
-                        <%}%>
+                <div class="col-md-9">
+                    <p><%=mealDescription%></p>
+                </div>
+                <div class="col-md-12">
+                    <p><%-mealDetails%></p>
+                </div>
+            </div>
                     </div>
                 </div>
                 
