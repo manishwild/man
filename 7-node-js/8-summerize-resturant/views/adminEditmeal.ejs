@@ -151,8 +151,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     
     <%- include('partial/htmljs')%>
    <script>
-    document
-        .querySelectorAll(".editbtn").forEach(element => {
+
+    document.querySelectorAll(".editbtn").forEach(element => {
             element.addEventListener("click", (e) => {
                 e.preventDefault()
                 //alert(e.target.getAttribute('mealid'))
@@ -161,7 +161,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 const mealTitle = e.target.parentElement.querySelector('.mealTitle').value
                 const mealDescription = e.target.parentElement.querySelector('.mealDescription').value
                 const mealPrice = e.target.parentElement.querySelector('.mealPrice').value
-                const imgFile =e.target.parentElement.querySelector('.form-control-file').files[0]
+                const imgFile = e.target.parentElement.querySelector('.form-control-file').files[0]
                 //console.log(mealPrice);
                 //sending data file with ajax
                     // $.ajax({
@@ -188,7 +188,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         fd.append('imgFile',imgFile)
                     }
 
-                    postData_FormData("/admin/editmeal",fd).then(response =>{
+                    postData_FormData("/admin/editmeal", fd).then(response =>{
                                //console.log(response);
                                if (response.status == 200) {
                                    response.json().then(jsonData =>{

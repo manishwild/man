@@ -34,7 +34,7 @@ function adminBurgerRouter(meals) {
     adminRouter.get('/addmeal', function (req, res) {
     //const data = fs.readFileSync('./meals.json');
     //const meals = JSON.parse(data);
-    res.render('adminAddmeal', {meals: meals});
+    res.render('adminAddmeal', {meals: meals,check:true});
 })
 adminRouter.get('/deletmeal', function (req, res) {
     //const data = fs.readFileSync('./meals.json');
@@ -45,7 +45,7 @@ adminRouter.post('/deletmeal', (req, res) => {
     //console.log(req.body.mealid);
     const idx = req.body.mealid
     try {
-        fs.unlinkSync("./public"+meals[idx].imgUrl)
+        fs.unlinkSync("./public" + meals[idx].imgUrl)
     } catch (error) {
         console.log(error);
     }
@@ -120,8 +120,15 @@ adminRouter.post('/addmeal', (req, res) => {
         // string empty string
         // object undefined
         // datatype null 
+       
+        
         if(mealTitle &&  mealPrice && mealDescription && req.files){
-            const mealImg = req.files.mealimg
+             //chek if mealtitle is exit
+        const foundMeal = meals.find(meal => meal.title == mealTitle)
+        if (foundMeal) {
+            res.render('adminAddmeal',{meals:meals,check:false})
+        } else {
+         const mealImg = req.files.mealimg
         //mealImg.name // blabla.jpeg
         // get image extenstion
         let ext = mealImg.name.substr(mealImg.name.lastIndexOf('.'))
@@ -140,12 +147,29 @@ adminRouter.post('/addmeal', (req, res) => {
             res.redirect('/admin/addmeal')
         }).catch(error => {
             res.send(error.message);
-        })
+        })   
+        }
+
+
+            
+        
     
     } else {
         res.send("meal data is not complete");
     }
     
+    });
+    adminRouter.post('/checkmealname', (req, res) => {
+        console.log(req.body);
+        const foundMeal = meals.find(meal => meal.title == req.body.mealtitle)
+        if (foundMeal) {
+            res.json('exist')
+        } else {
+            res.json('name not exist')
+
+        }
+
+        
     });
     return adminRouter
 }

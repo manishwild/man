@@ -36,7 +36,7 @@
                     <div class="single_delicious d-flex align-items-center">
                         <div class="thumb">
                            
-                            <img src='<%=meals[i].imgUrl%>'alt="">
+                            <img src="<%=meals[i].imgUrl%>" alt="">
                         </div>
                         <div class="info">
                             
@@ -61,7 +61,10 @@
         <form action="/admin/addmeal" method="POST" encType="multipart/form-data">
             <div class="form-group">
               <label for="exampleFormControlInput1">Meal Title </label>
-              <input type="text" class="form-control" name="mealTitle"  placeholder="Meal Title">
+              <input type="text" class="form-control" name="mealTitle" id="mealTitleInp" placeholder="Meal Title">
+              <%if(!check){%>
+                <span style="color:red">Title Exist</span>
+                <%}%>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Meal Price</label>
@@ -174,13 +177,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     
     <%- include('partial/htmljs')%>
-    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+    <script src='/tinymce/tinymce.min.js'></script>
     <script>
         tinymce.init({
           selector: '#mealDetails',
           /* theme of the editor */
-	//theme: "silver",
-	//skin: "oxide",
+	theme: "silver",
+	skin: "oxide-dark",
 	
 	/* width and height of the editor */
 	width: "100%",
@@ -232,6 +235,52 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		]}
 	]
         });
+
+
+        //this command will return:
+        //undefined  without userstrict
+        // send a post request to the server to check mealtitle is exist usin fetch
+        document.querySelector('#mealTitleInp').addEventListener('blur', (e) => {
+                        e.preventDefault()
+                        fetch('/admin/checkmealname', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                mealtitle: e.target.value
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                                // 'Content-Type': 'application/x-www-form-urlencoded'
+                            }
+
+                        }).then(response => {
+                            if (response.status == 200) {
+                                response.json().then(data => {
+                                    //alert(data)
+                                    //debugger
+                                    if (data == 'exist') {
+                                        const errorSpan = e.target.parentElement.querySelector('.errorspan')
+
+                                        if (errorSpan == null) {
+                                        
+                                        const errorSpan = document.createElement('span')
+                                        errorSpan.style.color = 'red'
+                                        errorSpan.classList.add('errorspan')
+                                        errorSpan.innerText = "Title is exist"
+                                        e.target.parentElement.append(errorSpan)
+                                        }
+                                        e.target.focus()
+                                    } else {
+                                        const errorSpan = e.target.parentElement.querySelector('.errorspan')
+                                        if (errorSpan) {
+                                            errorSpan.remove()
+                                        }
+                                    }
+                                })
+                            } else {
+                                alert('error')
+                            }
+                        })
+                    })
     </script>
 
 </body>
