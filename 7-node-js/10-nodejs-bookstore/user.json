@@ -1,11 +1,1 @@
-{
-    "users":[
-        {
-            "Id":"1",
-            "email":"manishwild@yahoo.com",
-            "password":"123456"
-
-        }    
-    ],
-    "newId":2
-}
+{"users":[{"id":1,"email":"manishwild@yahoo.com","password":"123456"},{"id":2,"email":"manishwild1000@gmail.com","password":"1234"},{"id":3,"email":"manishwild000@gmail.com","password":"1234"}],"newId":4}

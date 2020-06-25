@@ -191,7 +191,6 @@
               <p>Modal body text goes here.</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Save changes</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
@@ -222,7 +221,24 @@
                }).then(response =>{
                    if (response.status == 200) {
                        response.json().then(data =>{
-                           console.log(data);
+                           //console.log(data);
+                           switch (data) {
+                               case 1:
+                               showModal(false,"Register Sucess",'You can go to login Page...')
+                                   break;
+                                case 2:
+                               showModal(true,"Missing Entries",'You have miss some Entries or your go to login Page')
+                                   break;
+                                case 3:
+                               showModal(true,"Email is Registered",'This Email already register to system')
+                                   break;       
+                                case 4:
+                               showModal(true,"Server Error",'Please cont system admin')
+                                   break;
+                               default:
+                               showModal(true,"Server Error",'Please cont system admin')
+                                   break;
+                           }
                            
                        }).catch(errror =>{
                            console.log(error);
@@ -237,21 +253,7 @@
                showModal(true,"missing entries","you miss some entries or your password does not match repassword")
            } 
         })
-        function showModal(error,title,content) {
-            const modal = document.querySelector('#resultModal')
-            const modal_header = modal.querySelector('.modal-header')
-            const modal_body = modal.querySelector('.modal-body')
-            if (error) {
-                modal_header.classList.add('bg-danger')
-                modal_header.classList.remove('bg-success')
-            }else{
-                modal_header.classList.remove('bg-danger')
-                modal_header.classList.add('bg-success')
-            }
-            modal_header.innerHTML = title
-            modal_body.innerHTML = '<p>' + content + '</p>'
-            $('#resultModal').modal('show');
-        }
+        
 
     </script>
 </body>

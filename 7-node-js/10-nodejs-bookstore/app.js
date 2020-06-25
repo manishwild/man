@@ -4,10 +4,14 @@ const fileupload = require('express-fileupload')
 const cookie = require('cookie-parser')
 const fs = require('fs')
 
+
+
 //include dataModule
 const dataModule = require('./modules/dataModule')
+const adminRout = require('./routs/adminRoute')
 
 const app = express()
+
 app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.set('views',__dirname + '/views');
@@ -28,7 +32,7 @@ app.use(fileupload({
     limits: { fileSize: 50 * 1024 * 1024 }
 }))
 
-
+app.use('/admin',adminRout);
 
 app.get('/', (req, res) => {
     res.render('main')
@@ -46,7 +50,7 @@ app.post('/register', (req, res) => {
     // 1 user registered succefully
     // 3 user is exist
     // 4 server is error
-    const email = req.body.email
+    const email = req.body.email.trim()
     const password = req.body.password
     const repassword = req.body.repassword
     if (email && password && password == repassword) {
