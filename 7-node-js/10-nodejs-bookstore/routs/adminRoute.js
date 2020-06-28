@@ -16,9 +16,12 @@ adminRoute.post('/addbook', (req, res) => {
     //responses map
     // 1 book saved successfully
     // 2 data error
-    console.log(req.body)
-    console.log(req.files);
-    console.log(Object.keys(req.files));
+    // console.log(req.body)
+    // console.log(req.files);
+    // console.log(Object.keys(req.files));
+    if (req.files) {
+        
+    
     
     const bookTitle = req.body.bookTitle
     const bookDescription = req.body.bookDescription
@@ -34,6 +37,11 @@ adminRoute.post('/addbook', (req, res) => {
         }
         dataModule.addBook(bookTitle,bookDescription,bookPdf,imgs).then(()=>{
             res.json(1)
+        }).catch(error =>{
+            if (error == 3) {
+                res.json(3)
+            }
+            
         })
 
         
@@ -41,7 +49,9 @@ adminRoute.post('/addbook', (req, res) => {
         res.json(2)
        
     }
-    
+    } else {
+        res.json(2) 
+    }
     
    
     

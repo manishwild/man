@@ -20,7 +20,9 @@ app.use(express.json())
 // create session object options
 const sessionOptions = {
     secret: 'bookstore',
-    cookie: {}
+    resave: false,
+saveUninitialized: true,
+cookie: { secure: true } 
 }
 // use a session
 app.use(session(sessionOptions))
@@ -38,7 +40,10 @@ app.get('/', (req, res) => {
     res.render('main')
 });
 app.get('/shop', (req, res) => {
-    res.render('shop')
+    dataModule.getAllBooks().then(books =>{
+        res.render('shop',{books})
+    })
+    
 });
 app.get('/register', (req, res) => {
     res.render('register')
