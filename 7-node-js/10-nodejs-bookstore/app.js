@@ -8,6 +8,7 @@ const fs = require('fs')
 
 //include dataModule
 const dataModule = require('./modules/dataModule')
+const authRoute = require('./routs/auth')
 const adminRout = require('./routs/adminRoute')
 
 const app = express()
@@ -21,8 +22,8 @@ app.use(express.json())
 const sessionOptions = {
     secret: 'bookstore',
     resave: false,
-saveUninitialized: true,
-cookie: { secure: true } 
+saveUninitialized: false,
+cookie: { } 
 }
 // use a session
 app.use(session(sessionOptions))
@@ -35,6 +36,7 @@ app.use(fileupload({
 }))
 
 app.use('/admin',adminRout);
+app.use('/auth',authRoute);
 
 app.get('/', (req, res) => {
     res.render('main')
@@ -74,6 +76,46 @@ app.post('/register', (req, res) => {
     
 });
 
+app.get('/book/:booktitle/:id', (req, res) => {
+    //res.send(req.params.id);
+    dataModule.getBook(req.params.id).then(book =>{
+        let checkLogin = false
+        if (req.session.user) {
+            checkLogin = true
+        }
+       res.render('book',{book,checkLogin})
+    }).catch(error =>{
+        res.send('404,Book could not be found')
+    })
+    
+});
+
+app.get('/login', (req, res) => {
+    if (req.session.user) {
+        res.redirect('/admin')
+    }else[
+       res.render('login')
+    ]
+    
+});
+app.post('/login', (req, res) => {
+    console.log(req.body);
+    if (req.body.email && req.body.password) {
+       dataModule.checkUser(req.body.email.trim(),req.body.password).then(user =>{
+           req.session.user = user
+           res.json(1)
+       }).catch(error =>{
+           if (error == 3) {
+               res.json(3)
+           } else {
+               res.json(4)
+           }
+       })
+    } else {
+        res.json(2)
+    }
+    
+});
 app.listen(5000, () => {
     console.log('App listening on port 5000!');
 });

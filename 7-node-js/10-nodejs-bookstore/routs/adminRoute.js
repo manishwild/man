@@ -4,6 +4,17 @@ const dataModule = require('../modules/dataModule');
 
 const adminRoute = express.Router()
 
+adminRoute.use((req, res, next) => {
+    if (req.session.user) {
+        next()
+    } else {
+        res.redirect('/login')
+    }
+});
+
+adminRoute.get('/', (req, res) => {
+    res.render('admin')
+});
 
 adminRoute.get('/addbook', (req, res) => {
     
