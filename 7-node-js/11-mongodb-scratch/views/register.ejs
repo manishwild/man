@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="usernameInp" placeholder="username">
+    <br>
+    <input type="password" name="" id="passInp" placeholder="password">
+    <br>
+    <button id="register">register</button>
+    <script>
+        document.querySelector('#register').addEventListener('click', e => {
+            e.preventDefault()
+            const username = document.querySelector('#usernameInp').value.trim()
+            const password = document.querySelector('#passInp').value.trim()
+            const sentObj = {
+                    username,
+                    password
+            }
+            fetch('/register',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: JSON.stringify(sentObj)
+                })
+        })
+    </script>
+</body>
+</html>
