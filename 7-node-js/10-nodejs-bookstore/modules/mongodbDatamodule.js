@@ -52,7 +52,7 @@ function checkUser(email,password) {
     return new Promise((resolve,reject) =>{
         connect().then(client => {
             const db = client.db('test1')
-            db.collection('users').findOne({email:email}).then(user => {
+            client.db('test1').findOne({email:email}).then(user => {
                 if (user) {
                     if (passwordHash.verify(password,user.password)) {
                         resolve(user)
@@ -72,7 +72,69 @@ function checkUser(email,password) {
     })
 }
 
+function addBook(bookTitle,bookDescription,bookpdf,bookImgs,userid) {
+    return new Promise((resolve,reject)=>{
+        connect().then(client =>{
+            const db = client.db('test1').collection('books').findOne({title:bookTitle,userid:userid}).then(findBook =>{
+                if (findBook) {
+                    client.close()
+                    reject(3)
+
+                } else {
+                    //create images array to be saved in database
+                    const imgsArr = []
+
+                    bookImgs.forEach((img,idx) => {
+                        //get file extension
+                       let ext = img.name.substr(img.name.lastIndexOf('.')) 
+                       // set the new image name
+                       let newName = bookTitle.trim().replace(/ /g, '_') + '_' + userid + '_' + idx + ext
+                       img.mv('./public/uploaded/' + newName)
+                       imgsArr.push('/uploaded/' + newName)
+                    });
+                    // set a new pdf file name
+                    let pdfName = bookTitle.trim().replace(/ /g, '_') + '_' + userid + '.pdf' 
+                    // move the pdf file with the new name to uploaded folder
+                    bookpdf.mv('./public/uploaded/' + pdfName)
+                    //set the pdf url that gonna be saved in the json file
+                    let pdfNewUrl = '/uploaded/' + pdfName
+
+                    db.collection('books').insertone({
+                        title:bookTitle,
+                        description:bookDescription,
+                        pdfUrl:pdfNewUrl,
+                        imgs:imgsArr,
+                        userid:userid
+                    }).then(response =>{
+                        client.close()
+                        if (response.result.ok) {
+                            resolve()
+                        } else {
+                            reject(new Error('can u insert book'))
+                        }
+                    }).catch(error =>[
+                        reject(error)
+                    ])
+
+                }
+
+            }).catch(error =>{
+                client.close()
+                reject(error)
+            })
+            
+
+            }).catch(error =>{
+                reject(error)
+
+            })
+        })
+    }
+
+
 
 module.exports = {
     registerUser,
-    checkUser }
+    checkUser,
+    addBook
+ }

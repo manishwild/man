@@ -1,6 +1,6 @@
 const express = require('express')
 
-const dataModule = require('../modules/dataModule');
+const dataModule = require('../modules/mongodbDatamodule');
 
 const adminRoute = express.Router()
 
@@ -46,7 +46,7 @@ adminRoute.post('/addbook', (req, res) => {
                 
             }
         }
-        dataModule.addBook(bookTitle,bookDescription,bookPdf,imgs).then(()=>{
+        dataModule.addBook(bookTitle,bookDescription,bookPdf,imgs, req.session.user._id).then(()=>{
             res.json(1)
         }).catch(error =>{
             if (error == 3) {
