@@ -1,5 +1,6 @@
 const passwordHash = require('password-hash')
 const { MongoClient, ObjectID } = require('mongodb')
+const { response } = require('./dataModule')
 const connectionString = 'mongodb+srv://fbw5:123456abc@cluster0.wtcsm.mongodb.net/test1?retryWrites=true&w=majority'
 
 function connect() {
@@ -52,7 +53,7 @@ function checkUser(email,password) {
     return new Promise((resolve,reject) =>{
         connect().then(client => {
             const db = client.db('test1')
-            client.db('test1').findOne({email:email}).then(user => {
+            db.collection('users').findOne({email:email}).then(user => {
                 if (user) {
                     if (passwordHash.verify(password,user.password)) {
                         resolve(user)
@@ -75,7 +76,8 @@ function checkUser(email,password) {
 function addBook(bookTitle,bookDescription,bookpdf,bookImgs,userid) {
     return new Promise((resolve,reject)=>{
         connect().then(client =>{
-            const db = client.db('test1').collection('books').findOne({title:bookTitle,userid:userid}).then(findBook =>{
+            const db = client.db('test1')
+            db.collection('books').findOne({title:bookTitle,userid:userid}).then(findBook =>{
                 if (findBook) {
                     client.close()
                     reject(3)
@@ -110,11 +112,11 @@ function addBook(bookTitle,bookDescription,bookpdf,bookImgs,userid) {
                         if (response.result.ok) {
                             resolve()
                         } else {
-                            reject(new Error('can u insert book'))
+                            reject(new Error('can not insert book'))
                         }
-                    }).catch(error =>[
+                    }).catch(error => {
                         reject(error)
-                    ])
+                    })
 
                 }
 
