@@ -38,6 +38,33 @@ function registerUser(email,password) {
                     })
 
                 }
+            }).catch(error =>{ 
+                client.close()
+               reject(error)
+            })
+        }).catch(error =>{
+            reject(error)
+        })
+    })
+}
+
+function checkUser(email,password) {
+    return new Promise((resolve,reject) =>{
+        connect().then(client => {
+            const db = client.db('test1')
+            db.collection('users').findOne({email:email}).then(user => {
+                if (user) {
+                    if (passwordHash.verify(password,user.password)) {
+                        resolve(user)
+                    }else{
+                        reject(3)
+                    }
+                } else {
+                    reject(3)
+                }
+            }).catch(error =>{
+                client.close()
+                reject(3)
             })
         }).catch(error =>{
             reject(error)
@@ -46,7 +73,6 @@ function registerUser(email,password) {
 }
 
 
-
 module.exports = {
-    registerUser
-}
+    registerUser,
+    checkUser }
