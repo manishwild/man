@@ -6,10 +6,13 @@ const { MongoClient, ObjectID } = require('mongodb');
 const { response } = require('express');
 
 const app = express()
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+
 const connectionString = 'mongodb+srv://fbw5:123456abc@cluster0.wtcsm.mongodb.net/test1?retryWrites=true&w=majority'
 
 app.get('/', (req, res) => {
@@ -204,29 +207,47 @@ app.get('/register', (req, res) => {
     res.render('register')
 });
 app.post('/register', (req, res) => {
-    console.log(req.body)
+   
+// 1 register success
+    // 2 server error
+    // 3 user is already exist
+    //console.log(req.body)
+    const username =  req.body.username.trim()
+    const password =  req.body.password
     
-    console.log(userData);
+   
+    if (username && password) {
     (async()=>{
-        try {
-            const userData = {
-        username: req.body.username,
-        password: req.body.password
-    }
-           const client = await MongoClient.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology:true})
+        try {     
+        const client = await MongoClient.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology:true})
         const db = client.db('test1')
-        const response = await db.collection('users').insertOne({
-            username: req.body.username,
-            password: req.body.password
-        })
-        client.close() 
-        res.send(response);
+        const response = await db.collection('users').findOne({email: username})
+        
+        if (response) {
+            client.close() 
+            res.json(3)
+        }else{
+            const insertResponse = await db.collection('users').insertOne({
+                email:username,
+                password:password
+            })
+            //console.log(insertResponse)
+            client.close()
+            if (insertResponse.result.ok) {
+                res.json(1)
+            } else {
+                res.json(2)
+            }
+        }
         } catch (error) {
-            res.send(error);
+            res.json(2);
         }
         
         
     })()
+    }else{
+        res.json(2)
+    }
 });
 app.listen(3000, () => {
     console.log('App listening on port 3000!');
