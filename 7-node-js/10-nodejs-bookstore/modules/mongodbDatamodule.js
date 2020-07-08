@@ -65,7 +65,7 @@ function checkUser(email,password) {
                 }
             }).catch(error =>{
                 client.close()
-                reject(3)
+                   reject(3)
             })
         }).catch(error =>{
             reject(error)
@@ -126,9 +126,105 @@ function addBook(bookTitle, bookDescription, bookPdf, bookImgs, userid) {
     })
 }
 
+function getAllBooks() {
+    return new Promise((resolve,reject) =>{
+        connect().then(client => {
+            const db = client.db('test1')
+            db.collection('books').find().toArray().then(books => {
+                //add id property to cach book instead od _ID
+                books.forEach(book => {
+                    //book.id = book._id
+                    book['id'] = book['_id']
+                 });    
+                 client.close()
+                resolve(books)
+           
+               
+            
+            }).catch(error =>{
+                client.close()
+                reject(error)
+            })
+
+
+
+        }).catch(error =>{
+            reject(error)
+        })
+
+    })
+}
+function getBook(id) {
+    return new Promise((resolve,reject) =>{
+        connect().then(client => {
+            const db = client.db('test1')
+            db.collection('books').findOne({_id : new ObjectID(id)}).then(book => {
+                //add id property to cach book instead od _ID
+                
+                if (book) {
+                    book.id = book._id
+                    resolve(book)
+                     client.close()
+                } else {
+                    reject(new Error('Cannot find a book with this id ; ' + id))
+                }
+                   
+                   
+                     
+                
+                
+           
+               
+            
+            }).catch(error =>{
+                client.close()
+                reject(error)
+            })
+
+
+
+        }).catch(error =>{
+            reject(error)
+        })
+
+    })
+}
+
+function userBooks(userid) {
+    
+    return new Promise((resolve,reject) =>{
+        connect().then(client => {
+            const db = client.db('test1')
+            db.collection('books').find({userid: userid}).toArray().then(books => {
+                //add id property to cach book instead od _ID
+                books.forEach(book => {
+                    //book.id = book._id
+                    book['id'] = book['_id']
+                 });    
+                 client.close()
+                resolve(books)
+           
+               
+            
+            }).catch(error =>{
+                client.close()
+                reject(error)
+            })
+
+
+
+        }).catch(error =>{
+            reject(error)
+        })
+
+    })
+}
 
 module.exports = {
     registerUser,
     checkUser,
-    addBook
+    addBook,
+    getAllBooks,
+    getBook,
+    userBooks
  }

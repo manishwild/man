@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+    <div style="height:50px; background-color: blue;" id="someId"></div>
+    <div style="height:50px; background-color: red;" class="someId1"></div>
+    <div style="height:50px; background-color: green;" class="someId1"></div>
+    <div style="height:50px; background-color: aqua;" class="someId1"></div>
+
+
+
+    <script>
+        document.querySelector('#someId,.someId1').addEventListener('click',e =>{
+            alert('hi')
+        })
+        document.querySelectorAll('.someId1').forEach(element => {
+            element.addEventListener('click',e =>{
+            alert('hi again')
+        })
+        });
+
+    </script>
+</body>
+</html>

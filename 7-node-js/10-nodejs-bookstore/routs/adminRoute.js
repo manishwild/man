@@ -13,7 +13,7 @@ adminRoute.use((req, res, next) => {
 });
 
 adminRoute.get('/', (req, res) => {
-    res.render('admin')
+    res.render('admin',{email:req.session.user.email})
 });
 
 adminRoute.get('/addbook', (req, res) => {
@@ -69,17 +69,42 @@ adminRoute.post('/addbook', (req, res) => {
 
 });
 
+adminRoute.get('/mybooks', (req, res) => {
+   
+    dataModule.userBooks(req.session.user._id).then(books =>{
+        res.render('mybooks',{books})
+
+    }).catch(error =>{
+        res.send('404.page not found')
+    })
+});
 
 
 
+adminRoute.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.redirect('/login')
+});
 
 
 
+adminRoute.get('/mybook/:id', (req, res) => {
+    const bookid = req.params.id
+    dataModule.getBook(bookid).then(book =>{
+        res.render('editbook',{book})
+    }).catch(error =>{
+        res.send('404.this book is not exit')
+    })
+    
+});
 
 
-
-
-
+adminRoute.post('/editbook', (req, res) => {
+    const {bookTitle,oldImgsUrls,bookDescription} = req.body
+    console.log({bookTitle,oldImgsUrls,bookDescription});
+    
+    res.json(1)
+});
 
 
 

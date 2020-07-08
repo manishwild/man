@@ -8,6 +8,7 @@ const fs = require('fs')
 
 //include dataModule
 const dataModule = require('./modules/mongodbDatamodule')
+
 const authRoute = require('./routs/auth')
 const adminRout = require('./routs/adminRoute')
 
