@@ -100,10 +100,36 @@ adminRoute.get('/mybook/:id', (req, res) => {
 
 
 adminRoute.post('/editbook', (req, res) => {
-    const {bookTitle,oldImgsUrls,bookDescription} = req.body
-    console.log({bookTitle,oldImgsUrls,bookDescription});
+    const {bookTitle,oldImgsUrls,bookDescription,bookid} = req.body
+    //console.log(bookTitle,oldImgsUrls,bookDescription,bookid);
+    console.log(req.files);
+    let newPdfBook = null
+    let newImgs = []
+    if (req.files) {
+        newPdfBook = req.files.bookPdf
+        for(const key in req.files){ 
+            if (req.files[key].mimetype != 'application/pdf') {
+                newImgs.push(req.files[key])
+            }
+        }
+    }
+    let oldImgsUrlArr = JSON.parse(oldImgsUrls)
+    //console.log(oldImgsUrlArr);
+    //delete the domain from the imgs url
+    oldImgsUrlArr = oldImgsUrlArr.map(element => {
+        return element.substr(element.indexOf('/uploaded/'))
+        console.log(element);
+        
+    });
+    //console.log(oldImgsUrlArr);
     
-    res.json(1)
+    dataModule.UpdateBook(bookid, bookTitle,oldImgsUrlArr, bookDescription, newPdfBook, newImgs, req.session.user._id).then(() => {
+        res.json(1)
+    }).catch(error =>{
+        res.json(2)
+
+    })
+   
 });
 
 

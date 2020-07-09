@@ -389,6 +389,8 @@ document.querySelector('#deletePdf').addEventListener('click',e => {
         }
         //collect the data to be sent to the server side
         const fd = new FormData()
+        // add book id to fd
+        fd.append('bookid','<%=book.id%>')
         fd.append('bookTitle',bookTitle)
         //collect old images url
         const oldImgsArr = []
@@ -415,7 +417,16 @@ document.querySelector('#deletePdf').addEventListener('click',e => {
                 body: fd    
                }).then(response =>{
                    if (response.status == 200) {
-                       
+                       response.json().then(data =>{
+                           if (data === 1) {
+                               showModal(false,"success update",'your book is uploaded') 
+                           } else {
+                            showModal(true,"Error",'call the admin because of this error')
+                           }
+                        
+                       }).catch(error => {
+                        showModal(true,"Error",'call the admin')  
+                       })
                    }else{
                     showModal(true,"Error",'can not send the data') 
                    }
