@@ -1,6 +1,6 @@
 const passwordHash = require('password-hash')
 const { MongoClient, ObjectID } = require('mongodb')
-const { response } = require('./dataModule')
+
 const connectionString = 'mongodb+srv://fbw5:123456abc@cluster0.wtcsm.mongodb.net/test1?retryWrites=true&w=majority'
 const fs = require('fs')
 function connect() {
@@ -277,6 +277,49 @@ function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook,
     }
     })
 }
+function deleteBook(bookid, userid) {
+    return new Promise((resolve, reject) => {
+         getBook(bookid).then(book => {
+             //check if the book belong to the current login user
+             if (book.userid === userid) {
+                 //delete book images
+                 book.imgs.forEach(img =>{
+                     if (fs.existsSync('/public' + img)) {
+                         fs.unlinkSync('./public' + img)
+                     }
+                 })
+                 //delete pdf file
+                 //check if pdf file is exist then deleted
+                 if (fs.existsSync('/public' + book.pdfUrl)) {
+                    fs.unlinkSync('./public' + book.pdfUrl)
+                }
+                connect().then(client =>{
+                    const db = client.db('test1')
+                    db.collection('books').deleteOne({_id: new ObjectID(bookid)}).then(() =>{
+                        client.close()
+                        resolve()
+                    }).catch(error =>{
+                        client.close()
+                        reject(error)
+                    })
+                }).catch(error =>{
+                    reject(error)
+                })
+           
+             } else {
+                 reject(new Error('hacking try,not his time'))
+             }
+
+    }).catch(error =>{
+        reject(error)
+    })
+    
+    })
+   
+
+    
+}
+
 module.exports = {
     registerUser,
     checkUser,
@@ -284,5 +327,6 @@ module.exports = {
     getAllBooks,
     getBook,
     userBooks,
-    UpdateBook
+    UpdateBook,
+    deleteBook
  }

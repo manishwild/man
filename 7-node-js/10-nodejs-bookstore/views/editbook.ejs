@@ -104,7 +104,7 @@
                         <label for="bookDescriptionInp">Book Description</label>
                         <textarea class="form-control" id="bookDescriptionInp"><%=book.description%></textarea>
                     </div>
-                    <button class="btn btn-success mt-3" id="bookSaveBtn">save</button>
+                    <button class="btn btn-success mt-3" id="bookSaveBtn" >save</button>
                 </form>
             </div>
         </div>
@@ -412,10 +412,13 @@ document.querySelector('#deletePdf').addEventListener('click',e => {
         }
         // get book description from html editor tinymce and append it to fd
         fd.append('bookDescription',tinymce.get("bookDescriptionInp").getContent())
+        //disable save btn
+        btnWait(e.target, true, 'Saving...')
         fetch('/admin/editbook',{
                 method: 'POST',
                 body: fd    
                }).then(response =>{
+                btnWait(e.target, false, 'Save')
                    if (response.status == 200) {
                        response.json().then(data =>{
                            if (data === 1) {
@@ -433,10 +436,16 @@ document.querySelector('#deletePdf').addEventListener('click',e => {
 
                }).catch(error =>{
                 showModal(true,"Error",'can not send the data')
+                btnWait(e.target, false,'Save')
                })
-
+               //document.querySelector('#bookSaveBtn').disabled = true
 
     })
+//     $("#bookSaveBtn").click(function() {
+//     var that = this;
+//     $(this).attr("disabled", true);
+//     setTimeout(function() { enableSubmit(that) }, 2000);
+// });
 
 
     // document.querySelector('#bookSaveBtn').addEventListener('click',e =>{

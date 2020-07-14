@@ -1,1 +1,25 @@
-{"books":[{"id":1,"title":"lion king","description":"<p>wdsasadds</p>","imgs":["/uploaded/lion_king_1_0.png"],"pdfUrl":"/uploaded/lion_king_1.pdf","userid":1},{"id":2,"title":"new book","description":"<p>dfssdfasdfdfs</p>","imgs":["/uploaded/new_book_1_0.png"],"pdfUrl":"/uploaded/new_book_1.pdf","userid":1},{"id":3,"title":"jungle book js","description":"<p>thois is jungle java book</p>","imgs":["/uploaded/jungle_book_js_1_0.png","/uploaded/jungle_book_js_1_1.png","/uploaded/jungle_book_js_1_2.png"],"pdfUrl":"/uploaded/jungle_book_js_1.pdf","userid":1}],"newid":4}
+{
+    "books": [{
+        "id": 1,
+        "title": "lion king",
+        "description": "<p>wdsasadds</p>",
+        "imgs": ["/uploaded/lion_king_1_0.png"],
+        "pdfUrl": "/uploaded/lion_king_1.pdf",
+        "userid": 1
+    }, {
+        "id": 2,
+        "title": "new book",
+        "description": "<p>dfssdfasdfdfs</p>",
+        "imgs": ["/uploaded/new_book_1_0.png"],
+        "pdfUrl": "/uploaded/new_book_1.pdf",
+        "userid": 1
+    }, {
+        "id": 3,
+        "title": "jungle book js",
+        "description": "<p>thois is jungle java book</p>",
+        "imgs": ["/uploaded/jungle_book_js_1_0.png", "/uploaded/jungle_book_js_1_1.png", "/uploaded/jungle_book_js_1_2.png"],
+        "pdfUrl": "/uploaded/jungle_book_js_1.pdf",
+        "userid": 1
+    }],
+    "newid": 4
+}
