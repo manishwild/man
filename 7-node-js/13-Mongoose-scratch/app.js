@@ -84,7 +84,7 @@ app.get('/adduser', (req, res) => {
         const newUser = new Users ({
             fname: 'Manish',
             lname: 'shahi',
-            email: 'manishwild@manish2.com',
+            email: 'manishwild@manish.com',
             age: 34,
             active: true
         })
@@ -94,9 +94,9 @@ app.get('/adduser', (req, res) => {
             res.send(error.message)
         })
 
-    }).catch(error => [
+    }).catch(error => {
         res.send(error.message)
-    ])
+    })
 });
 
 
