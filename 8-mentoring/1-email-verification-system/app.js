@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const fs = require('fs')
 
+const port = process.env.port || 3000
 
 const app = express()
 app.set('view engine', 'ejs');
@@ -40,6 +41,6 @@ app.post('/register', (req, res) => {
     
 });
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!');
+app.listen(port, () => {
+    console.log('App listening on port!');
 });

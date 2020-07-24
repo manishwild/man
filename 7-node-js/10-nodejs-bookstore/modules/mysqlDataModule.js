@@ -4,6 +4,7 @@ const mySql = require('mysql')
 
 const fs = require('fs')
 const { log } = require('console')
+const { title } = require('process')
 
 let con = null
 function connect() {
@@ -138,32 +139,57 @@ function addBook(bookTitle, bookDescription, bookPdf, bookImgs, userid) {
 
 function getAllBooks() {
     return new Promise((resolve,reject) =>{
-        connect().then(() => {           
-            Books.find().then(books => {
+                
+            runQuery('SELECT books.*,imgs.* FROM books INNER JOIN imgs on books.id = imgs.bookid').then(results => {
+                const books = []
                 //add id property to cach book instead od _ID
-                books.forEach(book => {
-                    //book.id = book._id
-                    book['id'] = book['_id']
+                results.forEach(result => {
+                    // search if the book is added to books array
+                    let book = books.find(element => element.id === result.bookid)
+                    if (book) {
+                        // id the book is added before we need only to apppend the imgs property with the new imgurl
+                        book.imgs.push(result.imgUrl)
+                    } else {
+                        // if the book is not added to books, we need to add it to books and set imgs as new array with one element imgurl
+                        books.push({
+                            id: result.bookid,
+                            title: result.title,
+                            description: result.description,
+                            pdfUrl: result.pdfUrl,
+                            userid: result.userid,
+                            imgs: [result.imgUrl]
+                        })
+                    }
+                   
                  });     
                 resolve(books)
             }).catch(error =>{
                 reject(error)
             })
-        }).catch(error =>{
-            reject(error)
-        })
+       
 
     })
 }
 function getBook(id) {
     return new Promise((resolve,reject) =>{
-        connect().then(() => {
+        
             
-            Books.findOne({_id : id}).then(book => {
-                //add id property to cach book instead od _ID
+            runQuery(`SELECT books.* , imgs.* FROM books INNER JOIN imgs on imgs.bookid = books.id WHERE imgs.bookid =${id}`).then(results => {
                 
-                if (book) {
-                    book.id = book._id
+                if (results.length) {
+                   const book = {}
+                   results.forEach(result => {
+                       if (book.id) {
+                           book.imgs.push(result.imgUrl)
+                       } else {
+                           book.id = result.bookid
+                           book.title = result.title
+                           book.description = result.description
+                           book.pdfUrl = result.pdfUrl
+                           book.userid = result.userid
+                           book.imgs = [result.imgUrl]
+                       }
+                   })
                     resolve(book)
                      
                 } else {
@@ -175,41 +201,48 @@ function getBook(id) {
                 reject(error)
             })
 
-        }).catch(error =>{
-            reject(error)
-        })
+      
 
     })
 }
 
 function userBooks(userid) {
-    
     return new Promise((resolve,reject) =>{
-        connect().then(() => {
+        
             
-            Books.find({userid: userid}).then(books => {
+        runQuery(`SELECT books.* , imgs.* FROM books INNER JOIN imgs on books.id = imgs.bookid WHERE books.userid =${userid}`).then(results => {
+            
+            const books = []
                 //add id property to cach book instead od _ID
-                books.forEach(book => {
-                    //book.id = book._id
-                    book['id'] = book['_id']
-                 });    
-                
+                results.forEach(result => {
+                    // search if the book is added to books array
+                    let book = books.find(element => element.id === result.bookid)
+                    if (book) {
+                        // id the book is added before we need only to apppend the imgs property with the new imgurl
+                        book.imgs.push(result.imgUrl)
+                    } else {
+                        // if the book is not added to books, we need to add it to books and set imgs as new array with one element imgurl
+                        books.push({
+                            id: result.bookid,
+                            title: result.title,
+                            description: result.description,
+                            pdfUrl: result.pdfUrl,
+                            userid: result.userid,
+                            imgs: [result.imgUrl]
+                        })
+                    }
+                   
+                 });     
                 resolve(books)
-           
-               
-            
             }).catch(error =>{
-               
                 reject(error)
             })
+  
 
+})
+    
 
-
-        }).catch(error =>{
-            reject(error)
-        })
-
-    })
+  
 }
 function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook, newImgs,userid) {
     return new Promise((resolve, reject) => {
@@ -231,17 +264,22 @@ function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook,
                     deletedImgs.push(img)
                 }
             })
-            const newImgsUrlArr = []
+            let newImgsQuery = ''
+            const currentTime = Date.now()
             newImgs.forEach((img,idx) => {
                 const imgExt = img.name.substr(img.name.lastIndexOf('.'))
-                const newImgName = bookTitle.trim().replace(/ /g,'_') + '_' + userid + '_' + idx + '_' + (oldBookData.__v+1) + imgExt
-                newImgsUrlArr.push('/uploaded/' + newImgName)
+                const newImgName = bookTitle.trim().replace(/ /g,'_') + '_' + userid + '_' + idx + '_' + currentTime + imgExt
+                //newImgsUrlArr.push('/uploaded/' + newImgName)
+                const newImgsUrl = ('/uploaded/' + newImgName)
+                newImgsQuery += `INSERT INTO imgs (imgUrl, bookid) VALUE ('${newImgsUrl}','${bookid}');`
                 img.mv('./public/uploaded/' + newImgName)
-            });
+            })
             // delete the deleted img file from the system
-            deletedImgs.forEach(file => 
-                {if (fs.existsSync('./public' + file)) {
-                fs.unlinkSync('./public' + file)
+            let deleteImgQuery = ''
+            deletedImgs.forEach(file =>{ 
+                deleteImgQuery += `DELETE FROM imgs WHERE imgURL like  '${file}' AND bookid = ${bookid};`
+                if (fs.existsSync('./public' + file)) {
+                   fs.unlinkSync('./public' + file)
             } 
                 
             });
@@ -251,15 +289,17 @@ function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook,
             }
            
             
-          await Books.updateOne({_id: bookid},{
-                $set:{
-                    title:bookTitle,
-                    description: bookDescription,
-                    imgs:[...keepImgs,...newImgsUrlArr],
-                    $inc: { __v: 1 }
-                }
-            })
-            resolve()
+         await runQuery(`UPDATE books SET title = '${bookTitle}' , description = '${bookDescription}' WHERE id = ${bookid};`+ deleteImgQuery + newImgsQuery)
+                resolve()
+                //await connect()
+                // await Books.updateOne({_id : bookid}, {
+                //         title: newBookTitle,
+                //         description: bookDescription,
+                //         imgs: [...keepImgs, ...newImgsUrlsArr],   // on this way we can join old and new images in one array                        
+                //         $inc: {__v: 1}                        
+                // })                
+                //resolve()
+           
         })()
     } catch (error) {
        reject(error)     
