@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {BrowserRouter, Route, Link} from "react-router-dom";
-import { useLocation } from 'react-router-dom'
+import {BrowserRouter, Route, Link,useLocation} from "react-router-dom";
+
 import {
   Collapse,
   Navbar,
