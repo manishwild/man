@@ -1,20 +1,73 @@
 import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
+import { loginPost } from '../services/api'
+import PopUpModal from './PopUpModal'
+
 
 
 
 const Login =() => {
 
+    const history = useHistory()
+
     const initialState ={
         email:'',
-        password:''
+        password:'',
+        entriesError:false,
+        errorElement:null,
+        errorTitle:''
+
     }
     const [myState, setMyState] = useState(initialState);
 
-    console.log(myState);
+   //console.log(myState);
+
+    const onloginBtnclick = (e)=> {
+        e.preventDefault()
+       if (myState.email === '' || myState.password === '') {
+           const errorElement = (
+               <ul>
+                   {myState.email.trim() === '' ? <li>Email should not be empty</li> : null}
+                   {myState.password === '' ? <li>Password should not be empty</li> : null}
+               </ul>
+           )
+           setMyState({...myState,entriesError:true,errorElement,errorTitle:'Entries Error'})
+       } else {
+          loginPost(myState.email, myState.password).then(data => {
+              switch (data) {
+                  case 2:
+                      setMyState({...myState, entriesError: true, errorElement: <p>There was a server error</p>,errorTitle:'Server error'})
+                      break;
+                  case 3:
+                    setMyState({...myState, entriesError: true, errorElement: <p>Wrong password</p>,errorTitle:"passwod is wrong"})
+                    break;
+                  case 4:
+                    setMyState({...myState, entriesError: true, errorElement: <p>User not Exist</p>,errorTitle:'user not exist'})
+                    break; 
+                  case 1:
+                      //show admin panel
+                      history.push('/admin', myState.email)
+                    console.log('should be login');
+                    break;                   
+              
+                  default:
+                      break;
+              }
+
+          }).catch(error => {
+            setMyState({...myState, entriesError: true, errorElement: <p>cannot send the data</p>,errorTitle:'Unknown error'})
+          })
+       }
+       
+
+    }
+    const closeModal = () => {
+       setMyState({...myState,entriesError:false})
+    }
     
        return(
         <React.Fragment>
+        <PopUpModal show={myState.entriesError} close={closeModal} className="bg-danger" title={myState.errorTitle}>{myState.errorElement}</PopUpModal>
         <div className="breadcrumb">
         <div className="container">
             <Link className="breadcrumb-item" to="/">Home</Link>
@@ -38,7 +91,7 @@ const Login =() => {
                         </div>
                         
                         <div className="col-lg-8 col-md-12">
-                            <button  className="btn black">Login</button>
+                            <button  className="btn black" onClick={onloginBtnclick}>Login</button>
                             <h5>not Registered? <Link to="/register">Register here</Link></h5>
                         </div>
                     </div>

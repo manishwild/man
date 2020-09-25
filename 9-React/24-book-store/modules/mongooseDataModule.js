@@ -106,7 +106,7 @@ function checkUser(email,password) {
                         reject(3)
                     }
                 } else {
-                    reject(3)
+                    reject(4)
                 }
                
             }).catch(error => {
@@ -253,11 +253,12 @@ function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook,
         
         (async() => {
             let oldBookData = await getBook(bookid)
+            if (oldBookData.userid === userid) {
             const deletedImgs = []
             const keepImgs = []
             //get the update version number
          
-            let newIdx = oldBookData.imgs.length
+            //let newIdx = oldBookData.imgs.length
            //check which images user wants to keep and which to delete
             oldBookData.imgs.forEach(img => {
                 if (oldImgsUrls.indexOf(img) >= 0) {
@@ -294,7 +295,15 @@ function UpdateBook(bookid, bookTitle, oldImgsUrls, bookDescription, newPdfBook,
                     $inc: { __v: 1 }
                 }
             })
-            resolve()
+            getBook(bookid).then(book => {
+                resolve(book)
+            }).catch(error => {
+                reject(error)
+            })
+            
+        }else{
+            reject('hack')
+        }
         })()
     } catch (error) {
        reject(error)     
