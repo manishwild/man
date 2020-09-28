@@ -99,10 +99,10 @@ adminRoute.post('/mybooks', (req, res) => {
 
 
 
-// adminRoute.get('/logout', (req, res) => {
-//     req.session.destroy()
-//     res.redirect('/login')
-// });
+adminRoute.post('/logout', (req, res) => {
+    req.session.destroy()
+    res.json(10)
+});
 
 
 
@@ -120,7 +120,7 @@ adminRoute.post('/mybooks', (req, res) => {
 adminRoute.post('/editbook', (req, res) => {
     const {bookTitle,oldImgsUrls,bookDescription,bookid} = req.body
     //console.log(bookTitle,oldImgsUrls,bookDescription,bookid);
-    console.log(req.files);
+    //console.log(req.files);
     let newPdfBook = null
     let newImgs = []
     if (req.files) {
@@ -136,7 +136,7 @@ adminRoute.post('/editbook', (req, res) => {
     //delete the domain from the imgs url
     oldImgsUrlArr = oldImgsUrlArr.map(element => {
         return element.substr(element.indexOf('/uploaded/'))
-        console.log(element);
+        //console.log(element);
         
     });
     //console.log(oldImgsUrlArr);

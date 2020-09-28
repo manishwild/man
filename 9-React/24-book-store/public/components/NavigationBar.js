@@ -10,6 +10,9 @@ import {
   NavLink
 } from 'reactstrap';
 
+import { connect } from 'react-redux';
+import { logOutPost } from '../services/api';
+
 class NavigationBar extends React.Component {
     state = {
         isOpen: false
@@ -18,14 +21,25 @@ class NavigationBar extends React.Component {
         this.setState({ 
             isOpen:!this.state.isOpen})
     };
+    logOutBtnclick =(e) => {
+        e.preventDefault()
+        logOutPost().then(data => {
+            if (data === 10) {
+                this.props.history.push('/login')
+            } else {
+                
+            }
+        })
+    }
     render() {
+        console.log(this.props.location)
         let currentLocation = this.props.location.pathname
         return(
             <header>
         <div className="main-menu">
             <div className="container">
             <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">
+            <NavbarBrand tag={Link} to="/">
             <img src="/images/logo.png" alt="logo"/>
             </NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
@@ -43,12 +57,27 @@ class NavigationBar extends React.Component {
             <NavItem className="navbar-item"active={currentLocation === '/faq'?true : false}>
               <NavLink tag={Link} to="/faq">Faq</NavLink>
             </NavItem>
-            <NavItem className="navbar-item"active={currentLocation === '/login'?true : false}>
+            {this.props.user 
+            ?
+            <React.Fragment>
+            <NavItem className="navbar-item">
+              <NavLink href="#"onClick={this.logOutBtnclick}>Logout</NavLink>
+            </NavItem>
+            <NavItem className="navbar-item"active={currentLocation === '/admin'?true : false}>
+              <NavLink tag={Link} to="/admin">Dashboard</NavLink>
+            </NavItem>
+            </React.Fragment>
+             :
+             <React.Fragment>
+             <NavItem className="navbar-item"active={currentLocation === '/login'?true : false}>
               <NavLink tag={Link} to="/login">Login</NavLink>
             </NavItem>
             <NavItem className="navbar-item"active={currentLocation === '/register'?true : false}>
               <NavLink tag={Link} to="/register">Register</NavLink>
-            </NavItem>
+            </NavItem> 
+            </React.Fragment>
+            }
+            
             </Nav>
             </Collapse>
             <div className="cart my-2 my-lg-0">
@@ -101,6 +130,8 @@ class NavigationBar extends React.Component {
     )
 }
     }
-    
+    const mapStateToProps = (state) => {
+        return({user:state.user})
+    }
 
-export default withRouter(NavigationBar) 
+export default connect(mapStateToProps)(withRouter(NavigationBar))

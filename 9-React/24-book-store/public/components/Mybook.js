@@ -25,7 +25,7 @@ const Mybook = () => {
     const [state, setstate] = useState(initialState);
     useEffect(() => {
         getBookPost(params.id).then(data => { 
-            console.log(data)
+            //console.log(data)
             switch (data) {
                case 2:
                    console.log('server error') 
@@ -131,7 +131,7 @@ const Mybook = () => {
                         break;
                 }
             }).catch(error =>{
-              console.log(error);
+              //console.log(error);
                 setstate({...state,
                     showModal:true,
                     modalClass:'bg-danger',

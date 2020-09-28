@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import {BrowserRouter,Route,Switch  } from "react-router-dom";
 import Home from './Home';
 import Shop from './Shop';
@@ -12,8 +13,18 @@ import AddBook from './AddBook';
 import Book from './Book';
 import Mybooks from './MyBooks';
 import Mybook from './Mybook';
+import Authenication from './Authenication';
+import { authenicationPost } from '../services/api';
+import { setUserAction } from '../action'
 
 class Router extends React.Component  {
+    componentDidMount(){
+        authenicationPost().then(data => {
+            if (data != 10) {
+                this.props.setUserAction(data)
+            }
+        })
+    }
     render(){
         return(
             
@@ -27,10 +38,10 @@ class Router extends React.Component  {
             <Route path="/shop" exact component ={Shop} />
             <Route path="/login" exact component ={Login} />
             <Route path="/register" exact component ={Register} />
-            <Route path="/admin" exact component ={Admin} />
-            <Route path="/admin/mybooks" exact component ={Mybooks} />
-            <Route path="/admin/mybook/:id" exact component ={Mybook} />
-            <Route path="/admin/addbook" exact component ={AddBook} />
+            <Route path="/admin" exact component ={() => <Authenication><Admin /></Authenication>} />
+            <Route path="/admin/mybooks" exact component ={() => <Authenication><Mybooks /></Authenication>} />
+            <Route path="/admin/mybook/:id" exact component ={() => <Authenication><Mybook /></Authenication>} />
+            <Route path="/admin/addbook" exact component ={() => <Authenication><AddBook /></Authenication>} />
             <Route path="/book/:title/:id" exact component ={Book} />
             <Route path="/"  component ={Page404} /> 
             </Switch>
@@ -42,4 +53,4 @@ class Router extends React.Component  {
     
 }
 
-export default Router
+export default connect(null,{setUserAction})(Router)

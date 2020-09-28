@@ -18,8 +18,13 @@ const sessionOptions = {
     secret: 'bookstore',
     resave: false,
 saveUninitialized: false,
-cookie: { } 
+secret: "secret", //store: new MemoryStore(), expires: new Date(Date.now() + (30 * 86400 * 1000)),
+cookie: {
+    HttpOnly:true,
+    maxAge:60000
+ } 
 }
+
 app.use(session(sessionOptions))
 app.use(fileupload({
     limits: { fileSize: 50 * 1024 * 1024 }
@@ -69,7 +74,13 @@ app.post('/login', (req, res) => {
     }
     
 });
-
+app.post('/authenication', (req, res) => {
+    if (req.session.user) {
+        res.json(req.session.user.email)
+    } else {
+        res.json(10)
+    }
+});
 app.post('/register', (req, res) => {
     // your post register handler here
     //console.log(req.body);

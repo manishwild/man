@@ -1,12 +1,17 @@
-import React,{useState} from 'react'
+import { connect } from 'react-redux'
+import React,{useState,useEffect} from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import { loginPost } from '../services/api'
 import PopUpModal from './PopUpModal'
+import { setUserAction } from '../action'
 
 
 
 
-const Login =() => {
+const Login =(props) => {
+    useEffect(() => {
+        props.setUserAction(null)
+    }, []);
 
     const history = useHistory()
 
@@ -46,7 +51,8 @@ const Login =() => {
                     break; 
                   case 1:
                       //show admin panel
-                      history.push('/admin', myState.email)
+                      props.setUserAction(myState.email)
+                      history.push('/admin')
                     console.log('should be login');
                     break;                   
               
@@ -105,6 +111,6 @@ const Login =() => {
 
     }
 
-    export default Login
+    export default connect(null,{setUserAction})(Login)
     
 
