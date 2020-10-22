@@ -11,7 +11,7 @@ function connect() {
     return new Promise((resolve, reject) => {
         if (con) {
         if (con.state === 'disconnected') {
-            con.connect(error => {
+            con.connect(error => { 
                 if (error) {
                     reject(error)
                 } else {
